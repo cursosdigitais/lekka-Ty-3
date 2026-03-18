@@ -2338,6 +2338,24 @@
             });
         }
     </script>
-
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Pega os parâmetros exatos que estão na barra do navegador (UTMs do Facebook)
+            const parametros = window.location.search;
+            
+            if (parametros) {
+                // Encontra os seus dois botões de checkout
+                const botoesCheckout = document.querySelectorAll('a.vsl-btn-final-checkout');
+                
+                botoesCheckout.forEach(function(botao) {
+                    let linkAtual = botao.getAttribute('href');
+                    // Cola os parâmetros no link de destino, se já não tiver
+                    if (linkAtual && !linkAtual.includes('?')) {
+                        botao.setAttribute('href', linkAtual + parametros);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
